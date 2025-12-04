@@ -1,0 +1,17 @@
+// Функция для подсчёта гласных букв в слове
+const countVowels = (word) => {
+    // Определяем массив гласных букв 'a', 'e', 'i', 'o', 'u'
+    const vowels = ['a', 'e', 'i', 'o', 'u'];
+    
+    // Приводим слово к нижнему регистру для удобства сравнения
+    const lowerCaseWord = word.toLowerCase();
+    
+    // Преобразуем строку в массив символов
+    const characters = lowerCaseWord.split('');
+    
+    // Используем метод filter() для фильтрации гласных букв
+    const vowelArray = characters.filter(char => vowels.includes(char));
+    
+    // Возвращаем количество гласных букв
+    return vowelArray.length;
+};
