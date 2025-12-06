@@ -1,1 +1,52 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF8">
+    <title>Проверка промокода</title>
+    <style>
+        body {
+            font-family: Arial;
+            padding: 20px;
+            max-width: 500px;
+            margin: 0 auto;
+        }
+        
+        #promoForm {
+            border: 2px solid #ccc;
+            padding: 20px;
+            margin: 20px 0;
+        }
+        
+        .success {
+            border-color: green;
+            background-color: #e8f5e9;
+        }
+        
+        .successMsg {
+            color: green;
+            font-weight: bold;
+            margin-top: 10px;
+        }
+        
+        input, button {
+            padding: 10px;
+            margin: 5px;
+            font-size: 16px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Проверка промокода</h1>
+    
+    <form id="promoForm">
+        <div>
+            <label>ПРОМОКОД:</label>
+            <input type="text" id="promoInput" placeholder="Введите промокод">
+            <button type="submit">Применить</button>
+        </div>
+        <div id="message"></div>
+    </form>
 
+    <script src="index.js"></script>
+</body>
+</html>
