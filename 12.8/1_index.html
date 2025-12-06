@@ -1,1 +1,51 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Подарок при первой покупке</title>
+    <style>
+        body {
+            font-family: Arial;
+            padding: 20px;
+        }
+        
+        #popup {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: white;
+            border: 2px solid #333;
+            padding: 20px;
+            box-shadow: 0 0 20px rgba(0,0,0,0.3);
+            z-index: 1000;
+            text-align: center;
+            display: none;
+        }
+        
+        #popup h2 {
+            margin-top: 0;
+        }
+        
+        #closeBtn {
+            background: #4CAF50;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            margin-top: 15px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Добро пожаловать в наш магазин!</h1>
+    <p>Здесь вы можете купить различные товары.</p>
+    
+    <div id="popup">
+        <h2 id="giftTitle"></h2>
+        <button id="closeBtn">Отлично!</button>
+    </div>
 
+    <script src="index.js"></script>
+</body>
+</html>
