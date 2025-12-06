@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Мои фильмы</title>
+</head>
+<body>
+    <h1>Мои фильмы</h1>
+    
+    <h2>Добавить фильм</h2>
+    <form id="movieForm">
+        <div>
+            <label>Название:</label><br>
+            <input type="text" id="title" placeholder="Введите название">
+            <span id="titleError" style="color:red; font-size:12px;"></span>
+        </div><br>
+        
+        <div>
+            <label>Жанр:</label><br>
+            <input type="text" id="genre" placeholder="Введите жанр">
+            <span id="genreError" style="color:red; font-size:12px;"></span>
+        </div><br>
+        
+        <div>
+            <label>Год:</label><br>
+            <input type="number" id="year" placeholder="2023">
+            <span id="yearError" style="color:red; font-size:12px;"></span>
+        </div><br>
+        
+        <div>
+            <label>Успели посмотреть?</label><br>
+            <input type="radio" name="watched" id="watchedYes" value="yes" checked>
+            <label for="watchedYes">Да</label>
+            <input type="radio" name="watched" id="watchedNo" value="no">
+            <label for="watchedNo">Нет</label>
+        </div><br>
+        
+        <button type="button" id="addBtn">Добавить фильм</button>
+    </form>
+    
+    <hr>
+    
+    <h2>Фильтры</h2>
+    <div>
+        <label>Поиск:</label>
+        <input type="text" id="search" placeholder="Введите название или жанр">
+        
+        <label>Год от:</label>
+        <input type="number" id="yearFrom" placeholder="2000" style="width:80px;">
+        
+        <label>до:</label>
+        <input type="number" id="yearTo" placeholder="2024" style="width:80px;">
+        
+        <label>Просмотрено:</label>
+        <select id="watchedFilter">
+            <option value="all">Все</option>
+            <option value="yes">Да</option>
+            <option value="no">Нет</option>
+        </select>
+        
+        <button id="clearFilters">Очистить фильтры</button>
+        <button id="deleteAll" style="background:red; color:white;">Удалить все фильмы</button>
+    </div>
+    
+    <br>
+    
+    <table border="1" width="100%">
+        <thead>
+            <tr>
+                <th>Название</th>
+                <th>Жанр</th>
+                <th>Год</th>
+                <th>Просмотрено</th>
+                <th>Действие</th>
+            </tr>
+        </thead>
+        <tbody id="moviesTable">
+            <!-- Фильмы будут здесь -->
+        </tbody>
+    </table>
+    
+    <div id="noMovies" style="display:none; text-align:center; padding:20px;">
+        <p>Нет фильмов. Добавьте первый фильм!</p>
+    </div>
+
+    <script src="index.js"></script>
+</body>
+</html>
