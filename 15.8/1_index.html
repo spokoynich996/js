@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Мой список фильмов</title>
+</head>
+<body>
+    <h1>Мой список фильмов</h1>
+    
+    <h2>Добавить/редактировать фильм</h2>
+    
+    <form id="movieForm">
+        <div>
+            <label>Название:</label><br>
+            <input type="text" id="title" placeholder="Назад в будущее">
+            <div id="titleError" style="color:red; font-size:12px;"></div>
+        </div><br>
+        
+        <div>
+            <label>Жанр:</label><br>
+            <input type="text" id="genre" placeholder="Приключение">
+            <div id="genreError" style="color:red; font-size:12px;"></div>
+        </div><br>
+        
+        <div>
+            <label>Год:</label><br>
+            <input type="number" id="year" placeholder="1985">
+            <div id="yearError" style="color:red; font-size:12px;"></div>
+        </div><br>
+        
+        <div>
+            <label>Успели посмотреть?</label><br>
+            <input type="radio" name="watched" id="watchedYes" value="yes" checked>
+            <label for="watchedYes">Да</label>
+            <input type="radio" name="watched" id="watchedNo" value="no">
+            <label for="watchedNo">Нет</label>
+        </div><br>
+        
+        <div>
+            <button type="button" id="addBtn">Добавить фильм</button>
+            <button type="button" id="updateBtn" style="display:none;">Обновить</button>
+            <button type="button" id="cancelBtn" style="display:none;">Отменить редактирование</button>
+            <button type="button" id="clearBtn">Очистить форму</button>
+        </div>
+    </form>
+    
+    <hr>
+    
+    <div>
+        <label>Сортировать по:</label>
+        <select id="sortSelect">
+            <option value="title">Название</option>
+            <option value="genre">Жанр</option>
+            <option value="year">Год</option>
+        </select>
+        <span id="movieCount">Всего фильмов: 2</span>
+    </div>
+    
+    <table border="1" width="100%">
+        <thead>
+            <tr>
+                <th>Название</th>
+                <th>Жанр</th>
+                <th>Год</th>
+                <th>Успели посмотреть?</th>
+                <th>Действие</th>
+            </tr>
+        </thead>
+        <tbody id="moviesTableBody">
+            <!-- Фильмы будут здесь -->
+        </tbody>
+    </table>
+
+    <script src="index.js"></script>
+</body>
+</html>
