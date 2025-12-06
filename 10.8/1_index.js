@@ -1,38 +1,73 @@
-// Функция для отображения изображения в полном размере
-function showImage(imageSrc) {
+// Функция для отображения изображения
+function showImage(imageSrc, altText) {
     const fullImageDiv = document.getElementById('fullImage');
     
-    // Проверяем, существует ли файл
-    const img = new Image();
-    img.onload = function() {
+    // Создаем объект Image для проверки загрузки
+    const testImage = new Image();
+    
+    testImage.onload = function() {
         // Если изображение загрузилось
-        fullImageDiv.innerHTML = `<img src="${imageSrc}" alt="Большое изображение">`;
+        fullImageDiv.innerHTML = `<img src="${imageSrc}" alt="${altText}" style="max-width: 100%; max-height: 400px;">`;
         console.log(`Показано: ${imageSrc}`);
     };
     
-    img.onerror = function() {
+    testImage.onerror = function() {
         // Если изображение не найдено
         fullImageDiv.innerHTML = `
-            <div style="color: red;">
-                <p>Ошибка: файл "${imageSrc}" не найден</p>
-                <p>Убедитесь, что файл находится в той же папке</p>
+            <div style="color: red; padding: 20px;">
+                <p><strong>Ошибка:</strong> файл "${imageSrc}" не найден</p>
+                <p>Проверьте:</p>
+                <ol>
+                    <li>Файл находится в той же папке, что и HTML</li>
+                    <li>Имя файла написано правильно: "${imageSrc}"</li>
+                    <li>Файл имеет расширение .jpg</li>
+                </ol>
+                <p>Или используйте тестовые изображения:</p>
+                <button onclick="useTestImages()">Использовать тестовые изображения</button>
             </div>
         `;
         console.error(`Файл не найден: ${imageSrc}`);
     };
     
-    img.src = imageSrc;
+    testImage.src = imageSrc;
 }
 
-// Проверяем миниатюры при загрузке страницы
+// Функция для использования тестовых изображений (если свои не работают)
+function useTestImages() {
+    const thumbs = document.querySelectorAll('.thumb');
+    
+    // Тестовые изображения с Picsum
+    const testImages = [
+        'https://picsum.photos/400/300?random=1',
+        'https://picsum.photos/400/300?random=2', 
+        'https://picsum.photos/400/300?random=3'
+    ];
+    
+    // Обновляем миниатюры
+    thumbs.forEach((thumb, index) => {
+        const img = thumb.querySelector('img');
+        img.src = `https://picsum.photos/150/100?random=${index + 1}`;
+    });
+    
+    // Обновляем обработчики кликов
+    thumbs[0].setAttribute('onclick', "showImage('https://picsum.photos/400/300?random=1', 'Тестовое изображение 1')");
+    thumbs[1].setAttribute('onclick', "showImage('https://picsum.photos/400/300?random=2', 'Тестовое изображение 2')");
+    thumbs[2].setAttribute('onclick', "showImage('https://picsum.photos/400/300?random=3', 'Тестовое изображение 3')");
+    
+    // Показываем первое изображение
+    showImage('https://picsum.photos/400/300?random=1', 'Тестовое изображение 1');
+    
+    console.log('Используются тестовые изображения');
+}
+
+// Проверяем миниатюры при загрузке
 window.onload = function() {
     console.log("Галерея загружена");
     
-    // Добавляем обработчики ошибок для миниатюр
+    // Проверяем загрузку миниатюр
     document.querySelectorAll('.thumb img').forEach(img => {
         img.onerror = function() {
-            this.src = "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTUwIiBoZWlnaHQ9IjEwMCIgdmlld0JveD0iMCAwIDE1MCAxMDAiIGZpbGw9IiNjY2MiPjxyZWN0IHdpZHRoPSIxNTAiIGhlaWdodD0iMTAwIi8+PHRleHQgeD0iNTAlIiB5PSI1MCUiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIxMiIgZmlsbD0iNjY2IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBkeT0iLjNlbSI+Tm8gaW1hZ2U8L3RleHQ+PC9zdmc+";
-            this.alt = "Изображение не найдено";
+            console.warn(`Не удалось загрузить: ${this.src}`);
         };
     });
 };
