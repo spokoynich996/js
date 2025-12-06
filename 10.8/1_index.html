@@ -4,30 +4,66 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Мини-галерея</title>
-    <link rel="stylesheet" href="style.css">
+    <style>
+        body {
+            font-family: Arial;
+            padding: 20px;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        #fullImage {
+            border: 2px solid #333;
+            padding: 20px;
+            min-height: 300px;
+            margin: 20px 0;
+            text-align: center;
+            background: #f5f5f5;
+        }
+        
+        .thumbnails {
+            display: flex;
+            gap: 15px;
+            margin: 20px 0;
+            justify-content: center;
+        }
+        
+        .thumb {
+            cursor: pointer;
+            text-align: center;
+        }
+        
+        .thumb img {
+            width: 150px;
+            height: 100px;
+            border: 2px solid #666;
+        }
+        
+        .thumb p {
+            margin: 5px 0 0 0;
+        }
+    </style>
 </head>
 <body>
     <h1>Мини-галерея</h1>
     <p>Кликните на миниатюру, чтобы увидеть изображение</p>
     
-    <!-- Блок для большого изображения -->
     <div id="fullImage">
         <p>Здесь будет большое изображение</p>
     </div>
     
-    <!-- Миниатюры -->
     <div class="thumbnails">
-        <div class="thumb" onclick="showImage('витрина 100из1000.jpg')">
+        <div class="thumb" onclick="showImage('витрина 100из1000.jpg', 'Витрина 100 из 1000')">
             <img src="витрина 100из1000.jpg" alt="Витрина 1">
-            <p>Витрина 1</p>
+            <p>Витрина 100 из 1000</p>
         </div>
         
-        <div class="thumb" onclick="showImage('витрина тож.jpg')">
+        <div class="thumb" onclick="showImage('витрина тож.jpg', 'Витрина тоже')">
             <img src="витрина тож.jpg" alt="Витрина 2">
-            <p>Витрина 2</p>
+            <p>Витрина тоже</p>
         </div>
         
-        <div class="thumb" onclick="showImage('смена майндсета.jpg')">
+        <div class="thumb" onclick="showImage('смена майндсета.jpg', 'Смена майндсета')">
             <img src="смена майндсета.jpg" alt="Смена майндсета">
             <p>Смена майндсета</p>
         </div>
