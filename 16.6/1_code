@@ -1,0 +1,9 @@
+function hello() {
+    console.log('5kill');
+}
+try {
+    hello();
+} catch(error) {
+    console.error('Обнаружена ошибка:', error); // Теперь ошибка видна
+}
+console.log('complete');
