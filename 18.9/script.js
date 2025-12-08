@@ -73,6 +73,29 @@ function getDogImages() {
     });
 }
 
+// Функция для отображения изображений (картинки в той же папке)
+function displayImages(imageNames, containerId) {
+    const container = document.getElementById(containerId);
+    container.innerHTML = '';
+    
+    imageNames.forEach(imageName => {
+        // Картинка в той же папке (просто имя файла)
+        const img = document.createElement('img');
+        img.src = imageName;
+        img.alt = imageName;
+        img.className = 'image-item';
+        
+        // Если картинка не найдена, показываем заглушку
+        img.onerror = function() {
+            this.onerror = null; // Предотвращаем бесконечный цикл
+            this.src = `https://via.placeholder.com/200x150?text=${imageName}`;
+            console.log(`Изображение ${imageName} не найдено, используем заглушку`);
+        };
+        
+        container.appendChild(img);
+    });
+}
+
 // Задание 3: Объединение задач
 async function loadImagesWithProgress() {
     const loadBtn = document.getElementById('load-images-btn');
@@ -109,33 +132,11 @@ async function loadImagesWithProgress() {
         
     } catch (error) {
         console.error('Ошибка при загрузке:', error);
+        alert('Ошибка при загрузке изображений');
     } finally {
         loadBtn.disabled = false;
         loadBtn.textContent = 'Загрузить изображения';
     }
-}
-
-// Функция для отображения изображений
-function displayImages(imageNames, containerId) {
-    const container = document.getElementById(containerId);
-    container.innerHTML = '';
-    
-    imageNames.forEach(imageName => {
-        // Предполагаем, что картинки лежат в папке images/
-        const imgPath = `images/${imageName}`;
-        
-        const img = document.createElement('img');
-        img.src = imgPath;
-        img.alt = imageName;
-        img.className = 'image-item';
-        img.onerror = function() {
-            // Если картинка не найдена, показываем заглушку
-            this.onerror = null;
-            this.src = 'https://via.placeholder.com/200x150?text=' + imageName;
-        };
-        
-        container.appendChild(img);
-    });
 }
 
 // Инициализация при загрузке страницы
@@ -147,4 +148,6 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Кнопка для загрузки изображений
     document.getElementById('load-images-btn').addEventListener('click', loadImagesWithProgress);
+    
+    console.log('Страница загружена. Готово к работе!');
 });
